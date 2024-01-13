@@ -11,14 +11,14 @@ import { Header } from "../component/Header";
 
 const PokemonPage = ()=> {
   
-  const [ search, setSearch ] = useState('');
-  const [ type, setType ] = useState('');
-  const { allPokemons, error } = useFetchAllPokemons(URL);
-  const { pokemonsList } = useFetchInfoPokemons(allPokemons);
-  const { types } = useFetchAllTypes(typesUrl);
-  const { filterPokemons } = useFilterPokemons(pokemonsList, search, type)
-  const paginationFilter = usePagination(filterPokemons);
-  const paginationAllPokemons = usePagination(pokemonsList);
+const [ type, setType ] = useState('');
+const [ search, setSearch ] = useState('');
+const { allPokemons, error } = useFetchAllPokemons(URL);
+const { pokemonsList } = useFetchInfoPokemons(allPokemons);
+const { filterPokemons } = useFilterPokemons(pokemonsList, search, type)
+const { types } = useFetchAllTypes(typesUrl);
+const paginationFilter = usePagination(filterPokemons);
+const paginationAllPokemons = usePagination(pokemonsList);
 
   const handleInput = (e)=> {
     const { value } = e.target;
@@ -45,25 +45,27 @@ const PokemonPage = ()=> {
 
   return (
     <>
-    <Header 
-        handleInput={handleInput} 
-        handleSubmit={handleSubmit} 
-        handleTypeChange={handleTypeChange}
-        types={types}
-        type={type}
-        search={search} />
-    <section className="w-full min-h-screen">
-      <h1>Pokémon App</h1>
-      <Cards 
-        search={search} 
-        type={type} 
-        filterPokemons={filterPokemons} 
-        pokemonsList={pokemonsList} 
-        paginationAllPokemons={paginationAllPokemons}
-        paginationFilter={paginationFilter}/>
-    </section>
+      <Header 
+          handleInput={handleInput} 
+          handleSubmit={handleSubmit} 
+          handleTypeChange={handleTypeChange}
+          types={types}
+          type={type}
+          search={search} />
+      <section className="w-full min-h-screen">
+        <h1>Pokémon App</h1>
+        <Cards 
+          search={search} 
+          type={type} 
+          filterPokemons={filterPokemons} 
+          pokemonsList={pokemonsList} 
+          paginationAllPokemons={paginationAllPokemons}
+          paginationFilter={paginationFilter}/>
+      </section>
     </>
   );
-}
+};
+
+
 
 export {PokemonPage};

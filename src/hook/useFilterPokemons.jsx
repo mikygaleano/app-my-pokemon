@@ -9,7 +9,7 @@ const useFilterPokemons = (lista, search, type)=> {
         const asynFilter = async ()=> {
 
             if (search) {
-                const currentFilter = await lista.filter(pokemon => pokemon.name.includes(search));
+                const currentFilter = await lista.filter(pokemon => pokemon.name.toLowerCase().includes(search.toLowerCase()));
                 setFilterPokemons(currentFilter)
             }
             else if (type === 'all') {
@@ -17,7 +17,6 @@ const useFilterPokemons = (lista, search, type)=> {
                 setFilterPokemons(currentFilter)
             } else if (type) {
                 const currentFilter = await lista.filter(pokemon => pokemon.types === type)
-                console.log(currentFilter)
                 setFilterPokemons(currentFilter);
             } else {
                 const currentFilter = await lista;

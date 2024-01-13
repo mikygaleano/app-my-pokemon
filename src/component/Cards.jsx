@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { ButtonPage } from "./ButtonPage";
 
 const Cards = (
@@ -6,9 +7,15 @@ const Cards = (
     pokemonsList, paginationFilter,
     paginationAllPokemons}
     )=> {
+        
+    const navigate = useNavigate(); 
 
+    const detailPage = (id)=> {
+        navigate(`/pokemons/detail/${id}`)
+    }
 
     if (pokemonsList.length < 1 || filterPokemons.length < 1) return <h3>loading...</h3>
+
 
 
     return (
@@ -20,7 +27,7 @@ const Cards = (
                         <div className="w-full h-full flex flex-row justify-center gap-2 flex-wrap">
                         {pokemonsList.map(pokemon => (
                         <div 
-                            className="w-56 h-96 flex flex-col gap-2" 
+                            className="w-56 h-96 flex flex-col justify-start gap-2 border rounded-md p-5" 
                             key={pokemon.id}>
                             <figure className="w-full h-3/4">
                                 <img 
@@ -30,6 +37,7 @@ const Cards = (
                             <div className="w-full h-fit flex flex-col gap-2">
                                 <span>{pokemon.name}</span>
                                 <span>{pokemon.types}</span>
+                                <button onClick={()=> detailPage(pokemon.id)}>Details</button>
                             </div>
                         </div>
                         )).slice(paginationAllPokemons.currentPage - 20, paginationAllPokemons.currentPage)}
@@ -42,7 +50,7 @@ const Cards = (
                     <div className="w-full h-full flex flex-row justify-center gap-2 flex-wrap">
                     {filterPokemons.map(pokemon => (
                         <div
-                            className="w-56 h-96 flex flex-col gap-2" 
+                            className="w-56 h-96 flex flex-col justify-start gap-2 border rounded-md p-5" 
                             key={pokemon.id}>
                             <figure className="w-full h-3/4">
                                 <img 
@@ -52,6 +60,7 @@ const Cards = (
                             <div className="w-full h-fit flex flex-col gap-2">
                                 <span>{pokemon.name}</span>
                                 <span>{pokemon.types}</span>
+                                <button onClick={()=> detailPage(pokemon.id)}>Details</button>
                             </div>
                         </div>
                         )).slice(paginationFilter.currentPage - 20, paginationFilter.currentPage)
