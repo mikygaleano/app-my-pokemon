@@ -23,7 +23,10 @@ const Cards = (
         
                 {
                 !search && !type ? (
+
                     <div className="w-full h-full grid gap-5">
+                        <ButtonPage next={paginationAllPokemons.next} 
+                                prev={paginationAllPokemons.prev} />
                         <div className="w-full h-full flex flex-row justify-center gap-2 flex-wrap">
                         {pokemonsList.map(pokemon => (
                         <div 
@@ -47,6 +50,8 @@ const Cards = (
                     </div>
                 ) : filterPokemons.length > 0 ? (
                   <div className="w-full h-full grid gap-5">
+                    <ButtonPage next={paginationFilter.next}
+                                prev={paginationFilter.prev} />
                     <div className="w-full h-full flex flex-row justify-center gap-2 flex-wrap">
                     {filterPokemons.map(pokemon => (
                         <div

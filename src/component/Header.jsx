@@ -16,8 +16,8 @@ const Header = ({handleInput, handleSubmit, handleTypeChange, types, type, searc
                 {
                     types.length > 0 && 
                     (
-                        types.map(items => (
-                        <option key={items.id} value={items.name}>{items.name}</option>
+                        types.map((items, index) => (
+                        <option key={index} value={items.name}>{items.name}</option>
                         ))
                     )
                 }
